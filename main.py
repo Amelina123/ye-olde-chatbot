@@ -28,8 +28,12 @@ bot = Chatbot()
 # bot.reset_history()
 
 print(f" Hello, I am glad to talk to you.")
+print("\n--- System prompt ---")
+print(bot.system_prompt.strip())
+print("---------------------\n")
 print("Type :q or exit to leave.\n")
 name = input("Enter your name:")
+bot.history.append((f"My name is {name}.", "Nice to meet you!"))
 print(f" Hello, {name}\n Enter your massege or question")
 exit_conditions = (":q", "exit")
 while True:
@@ -37,7 +41,7 @@ while True:
     if prompt.strip().lower() in exit_conditions:
         print("Goodbye!")
         break
-    else:
-        reply = bot.generate_reply(prompt)
-        print(f"Chatbot: {reply}\n")
+    
+    reply = bot.generate_reply(prompt)
+    print(f"Chatbot: {reply}\n")
 bot.reset_history()
